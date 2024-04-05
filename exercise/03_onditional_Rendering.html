@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-if="status == true ">Hello Vue Js</h1>
+      <h1 v-else>Else is working in Vue Js</h1>
+
+      <h1 v-if="fruit == 'apple'">Apple</h1>
+      <h1 v-else-if="fruit == 'orange'">Orange</h1>
+      <h1 v-else>Mango</h1>
+    </div>
+    <div id="option">
+      <h1 v-if="fruit == 'apple'">Apple</h1>
+      <h1 v-else-if="fruit == 'orange'">Orange</h1>
+      <h1 v-else>Mango</h1>
+    </div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        status: false,
+        fruit: "apple",
+      },
+    });
+  </script>
+  <script>
+    let app1 = new Vue({
+      el: "#option",
+      data: {
+        fruit: "apple",
+      },
+    });
+  </script>
+</html>

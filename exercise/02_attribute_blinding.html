@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .red-color {
+      color: red;
+    }
+    .delete-message {
+      text-decoration: line-through;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <h1 class="red-color">CSS {{message}}</h1>
+      <h1 v-bind:class="textRed">VUE {{message}}</h1>
+      <h1 :class="textRed">VUE {{message}} (shot hand)</h1>
+      <h1 :class="[textRed,textDelete]">
+        VUE {{message}} (shot hand) with array
+      </h1>
+
+      <a :href="url" target="_blank">YouTube(URL BIND)</a> <br />
+      <br />
+
+      <input type="text" v-model="message" />
+      <br /><br />
+      <br /><br />
+      <br /><br />
+      <img :src="mySrc" alt="" width="300px" />
+      <span :title="myTitle">Code Lab</span>
+
+      <input type="text" :disabled="status == true" />
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+  <!-- 
+    class,href,required , src ,
+   -->
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        message: "This is message",
+        textRed: "red-color",
+        textDelete: "delete-message",
+        url: "https://www.youtube.com/",
+        mySrc: "./../exercise/image/website.png",
+        myTitle: "Code LAb is good",
+        status: false,
+      },
+    });
+  </script>
+</html>

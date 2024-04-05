@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      
+      <!-- <button v-on:click="clickNe()">Click  ME</button>
+      <button @click="clickNe2()">Click  ME</button> -->
+      
+        <h1>{{number}}</h1>
+
+         <button @click="increase()">Increase</button>
+         <button @click="decrease()">Decrease  </button>
+         <p v-if="number <0">It is mius Number</p>
+         <p v-if="number ==0">It is zero</p>
+         <p v-if="number >0">It is plus Number</p>
+
+
+         <!-- two way data binding -->
+         <input type="text" v-model="myText" name="" id="" v-on:keyup.enter="send()"> {{myText}}
+         <!-- <input type="text" v-model="myText" name="" id="" :keyup.enter="send()"> {{myText}} -->
+         <button @click="send()">Send</button>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        number : 0,
+        myText : "",
+      },
+      methods:{
+        // clickNe:function(){
+        //   alert("Hello World")
+        // },
+        // clickNe2(){
+        //   alert("Two")
+        // }
+        increase(){
+          this.number++;
+          // alert(number);
+        },
+        decrease(){
+          this.number--;
+                    // alert(number);
+
+        },
+        send(){
+          console.log(this.myText);
+          alert(this.myText)
+          this.myText='';
+        },
+        
+      },
+    });
+  </script>
+
+</html>

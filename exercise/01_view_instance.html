@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      {{ body }} | {{title}}
+
+      <div>
+        <!-- expression =>ok , declare (statement) = > is not ok -->
+        <h1>{{1+1}}</h1>
+        <h1>{{ body.split(" ").join("-") }}</h1>
+        <h1>{{age}}</h1>
+      </div>
+    </div>
+
+    {{body}} {{1+1}}
+  </body>
+  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+  <!-- <script>
+    const { createApp, ref } = Vue;
+
+    createApp({
+      setup() {
+        const message = ref("Hello vue!");
+        return {
+          message,
+        };
+      },
+    }).mount("#app");
+  </script> -->
+  <script>
+    let app = new Vue({
+      el: "#app", //element
+      data: {
+        title: "this is title",
+        body: "this is body",
+        age: "10",
+      },
+    });
+  </script>
+</html>

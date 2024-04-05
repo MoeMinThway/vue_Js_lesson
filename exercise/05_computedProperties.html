@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      
+        <h1>    {{message}}</h1>
+        <!-- <h1>    {{message.length}}</h1> -->
+        <h1>    {{getLength}}</h1>
+        <h1>    {{reverse}}</h1>
+        <button @click="show()">Show</button>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        message :" Hello Vue"
+      },
+      computed:{
+        getLength(){
+            return this.message.length;
+        },
+        reverse(){
+            // return this.message.split("").reverse().join("");
+            let newMessage =this.message.split("");
+            let reverseMessage = newMessage.reverse();
+            let response = reverseMessage.join("")
+            return response;
+        }
+      },
+      methods:{
+        show(){
+            alert(this.message);
+        }
+      },
+    });
+  </script>
+
+</html>

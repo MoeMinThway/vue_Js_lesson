@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+        <h1>Looping</h1>
+    <ul>
+        <!-- <li v-for="item in numbers">    {{item}}</li> -->
+        <!-- <li v-for="(item,index) in numbers"> index {{index}}  | value {{item}}</li> -->
+        <li v-for="(item,index) in obj"> index {{index}}  | value {{item}} | age {{item.age}}</li>
+    </ul>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        message :" Hello Vue",
+        numbers : [1,2,3,4,5,6],
+        obj :[
+            {
+                name: "MoeMin Thway",
+                age:13
+            },
+            {
+                name: " Thway",
+                age:23
+            },
+            {
+                name: "Min ",
+                age:93
+            },
+            {
+                name: "Moe ",
+                age:32
+            }
+        ]
+      },
+      computed:{
+       
+      },
+      methods:{
+        
+      },
+    });
+  </script>
+
+</html>

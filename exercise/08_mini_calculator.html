@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container" id="app">
+      <div class="mt-5 text-center my-4"><h4>My Calculator</h4></div>
+      <div class="row my-5 justify-content-center">
+        <div class="col-12">
+          <div class="card" style="background: rgb(203, 168, 168)">
+            <div class="card-body">
+              <div
+                class="text-white p-3 rounded d-flex justify-content-end align-content-center bg-dark"
+              >
+                {{answer}}
+              </div>
+              <br />
+              <br />
+              <div class="row">
+                <div class="form-group col-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter the first number"
+                    v-model="userInput.firstNumber"
+                  />
+                  <!-- <br /> -->
+                  <small class="text-danger" v-if="validation.firstNumberStatus"
+                    >First number is required</small
+                  >
+                </div>
+                <div class="form-group col-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter the second number"
+                    v-model="userInput.secondNumber"
+                  />
+                  <small
+                    class="text-danger"
+                    v-if="validation.secondNumberStatus"
+                    >Second number is required</small
+                  >
+                </div>
+              </div>
+              <br />
+              <br />
+              <div class="row">
+                <div class="col">
+                  <select
+                    name=""
+                    id=""
+                    class="form-control"
+                    v-model="userInput.operators"
+                  >
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                  </select>
+                  <small class="text-danger" v-if="validation.operatorsStatus">
+                    Operator is required</small
+                  >
+                </div>
+
+                <div class="col">
+                  <button class="btn btn-primary" @click="calculate()">
+                    Calculate
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-danger" @click="cleanForm()">
+                    Clear
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-warning" @click="save()">Save</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <h5 class="text-white">History</h5>
+              <div class="text-muted" v-for="history in histories">
+                {{history}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- MDB -->
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+  <script>
+    let app = new Vue({
+      el: "#app", //element
+      data: {
+        userInput: {
+          firstNumber: null,
+          secondNumber: null,
+          operators: "",
+        },
+        answer: 0,
+        histories: [],
+        validation: {
+          firstNumberStatus: false,
+          secondNumberStatus: false,
+          operatorsStatus: false,
+        },
+        saveStatus: false,
+      },
+      methods: {
+        operation() {
+          //   alert("helo");
+
+          let num1 = parseInt(this.userInput.firstNumber); //int
+          let num2 = parseInt(this.userInput.secondNumber); //int
+          switch (this.userInput.operators) {
+            case "+":
+              return num1 + num2;
+              break;
+            case "-":
+              return num1 - num2;
+              break;
+            case "*":
+              return num1 * num2;
+              break;
+            case "/":
+              return num1 / num2;
+              break;
+            default:
+              return "error";
+              break;
+          }
+        },
+        calculate() {
+          this.validationCheck();
+
+          if (
+            !this.validation.firstNumberStatus &&
+            !this.validation.secondNumberStatus &&
+            !this.validation.operatorsStatus
+          ) {
+            let result = this.operation();
+
+            this.answer = ` ${this.userInput.firstNumber}  ${this.userInput.operators}  ${this.userInput.secondNumber}  = ${result} `;
+            //   alert(result);
+            this.saveStatus = true;
+            this.clearForm();
+          }
+        },
+        clearForm() {
+          this.userInput.firstNumber = "";
+          this.userInput.secondNumber = "";
+          this.userInput.operators = "";
+        },
+        cleanForm() {
+          this.validation.firstNumberStatus = false;
+          this.validation.secondNumberStatus = false;
+          this.validation.operatorsStatus = false;
+          this.answer = 0;
+          this.clearForm();
+          this.histories = [];
+        },
+        save() {
+          // alert("save");
+
+          if (this.saveStatus == true) {
+            this.histories.push(this.answer);
+            this.answer = 0;
+            this.saveStatus = false;
+          }
+        },
+        validationCheck() {
+          this.validation.firstNumberStatus =
+            this.userInput.firstNumber == "" ? true : false;
+          this.validation.secondNumberStatus =
+            this.userInput.secondNumber == "" ? true : false;
+          this.validation.operatorsStatus =
+            this.userInput.operators == "" ? true : false;
+        },
+      },
+    });
+  </script>
+</html>
